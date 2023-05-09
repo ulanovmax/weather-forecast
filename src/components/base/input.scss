@@ -1,0 +1,44 @@
+input,
+textarea {
+	border: 1px solid transparent;
+	font-weight: 500;
+	font-size: 16px;
+	padding: 12px;
+	border-radius: 8px;
+	color: var(--white);
+	width: 100%;
+	font-family: var(--font-main);
+	transition: 0.3s ease;
+
+	background: rgb(245 248 255 / 17%);
+	backdrop-filter: blur(10px);
+
+	&::placeholder {
+		font-weight: 500;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.6);
+	}
+
+	&:hover {
+		background: rgb(245 248 255 / 10%);
+	}
+
+	&:focus {
+		border-color: var(--white);
+	}
+}
+
+.input-item {
+	position: relative;
+	max-width: 400px;
+
+	.icon {
+		position: absolute;
+		right: 12px;
+		top: 50%;
+		transform: translateY(-50%);
+		color: var(--white);
+		z-index: 10;
+		pointer-events: none;
+	}
+}

@@ -1,5 +1,12 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+import { createApp } from "vue";
+import App from "./App.vue";
 
-createApp(App).mount('#app')
+// Styles
+import "./assets/styles/style.scss";
+
+import router from "@/router";
+
+// Components
+import VInput from "@/components/base/VInput.vue";
+
+createApp(App).use(router).component("VInput", VInput).mount("#app");

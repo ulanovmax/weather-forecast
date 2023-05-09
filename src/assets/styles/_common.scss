@@ -1,0 +1,14 @@
+body {
+	font-family: var(--font-main);
+	background: linear-gradient(101.56deg, #4f7ffa 17.75%, #335fd1 84.8%);
+	color: var(--white);
+	overflow-x: hidden;
+	min-width: 320px;
+}
+
+.cont {
+	max-width: 1200px;
+	width: 100%;
+	margin: 0 auto;
+	padding: 0 2rem;
+}

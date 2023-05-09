@@ -1,0 +1,12 @@
+.hero-screen {
+	padding: 60px 0;
+
+	&__heading {
+		max-width: 500px;
+		margin-bottom: 32px;
+
+		&-title {
+			margin-bottom: 20px;
+		}
+	}
+}
