@@ -1,0 +1,333 @@
+.city-card {
+	padding: 30px;
+	border-radius: 24px;
+	background: rgb(255 255 255 / 20%);
+	backdrop-filter: blur(15px);
+	position: relative;
+
+	.nav-buttons {
+		display: flex;
+		align-items: center;
+		margin-bottom: 70px;
+
+		&__item {
+			color: var(--white);
+			padding: 8px;
+			border-radius: 8px;
+			font-size: 16px;
+			font-family: var(--font-main);
+			transition: 0.3s ease;
+			background: rgba(18, 24, 41, 0.5);
+			font-weight: 600;
+			cursor: pointer;
+
+			&.active {
+				background: var(--grey);
+			}
+
+			&:not(:last-of-type) {
+				margin-right: 10px;
+			}
+		}
+	}
+
+	&__graph {
+		width: 60%;
+
+		h3 {
+			margin-bottom: 20px;
+		}
+
+		&-content {
+			background: var(--white);
+			border-radius: 24px;
+			padding: 20px;
+
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: contain;
+			}
+		}
+	}
+
+	&__main {
+		margin-bottom: 40px;
+	}
+
+	&__date {
+		text-align: center;
+		margin-bottom: 12px;
+	}
+
+	&__wrapper {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+	}
+
+	&__info {
+		.city-card__wrapper {
+			margin-bottom: 20px;
+			justify-content: center;
+			align-items: center;
+		}
+	}
+
+	&__img {
+		width: 120px;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+		}
+	}
+
+	&__heading {
+		&-temp {
+			margin-bottom: 8px;
+			font-size: 24px;
+		}
+	}
+
+	.controls {
+		position: absolute;
+		right: 30px;
+		top: 30px;
+	}
+
+	.stats {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+		max-width: 400px;
+		margin: 0 auto;
+	}
+
+	.stats__item {
+		border-radius: 12px;
+		padding: 16px;
+		background: #fafafa;
+		color: var(--grey);
+
+		display: flex;
+		align-items: center;
+
+		&-value {
+			font-weight: 700;
+			font-size: 20px;
+		}
+
+		&-icon {
+			margin-right: 18px;
+			color: #3c6eef;
+
+			span {
+				font-size: 30px;
+			}
+		}
+	}
+}
+
+.weather-board {
+	display: flex;
+	flex-flow: row;
+	align-items: center;
+	justify-content: center;
+
+	position: relative;
+	border-radius: 24px;
+	height: 420px;
+	width: 60%;
+}
+
+.board-box {
+	flex: initial;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	perspective: 200rem;
+
+	&__side {
+		height: 100%;
+		transition: all 0.8s ease;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		-webkit-backface-visibility: hidden;
+		/* We don't want to see the back part of the element. */
+		backface-visibility: hidden;
+		/* We don't want to see the back part of the element. */
+		overflow: hidden;
+		/* The image is overflowing the parent. */
+		box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.15);
+		border-radius: 24px;
+
+		&--front {
+			background: var(--white);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		&--back {
+			background-color: rgb(255 255 255 / 30%);
+			transform: rotateY(180deg);
+
+			padding: 25px;
+		}
+	}
+
+	&.flipped {
+		.board-box__side--back {
+			transform: rotateY(0);
+		}
+
+		.board-box__side--front {
+			transform: rotateY(-180deg);
+		}
+	}
+}
+
+// Forecast list
+.forecast-list {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 20px;
+
+	&__item {
+		color: #122354;
+		text-align: center;
+		padding: 12px;
+		background: rgb(255 255 255 / 20%);
+		border-radius: 12px;
+
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		img {
+			width: 80px;
+			object-fit: contain;
+		}
+
+		&-temp {
+			font-size: 24px;
+			margin: 5px 0;
+		}
+
+		&-day {
+			margin: 0 auto;
+		}
+	}
+}
+
+.city-card__graph-content {
+	width: 100%;
+	height: 100%;
+}
+
+// Controls buttons
+.controls {
+	display: flex;
+}
+
+.switch {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	cursor: pointer;
+	background: var(--white);
+	width: fit-content;
+	border-radius: 12px;
+	position: relative;
+	overflow: hidden;
+}
+
+.switch {
+	margin-right: 10px;
+}
+
+.switch-button {
+	position: relative;
+	display: block;
+
+	input {
+		cursor: pointer;
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		z-index: 2;
+
+		&:checked + span {
+			background: var(--blue);
+			color: var(--white);
+		}
+
+		& + span {
+			position: relative;
+			padding: 10px;
+			font-size: 24px;
+			display: block;
+			user-select: none;
+			pointer-events: none;
+			text-align: center;
+			color: var(--black);
+			transition: 0.3s ease;
+		}
+	}
+}
+
+.save-checkbox {
+	label {
+		background-color: var(--white);
+		display: flex;
+		align-items: center;
+		gap: 14px;
+		padding: 10px;
+		cursor: pointer;
+		user-select: none;
+		border-radius: 10px;
+		box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+		color: #ff7171;
+	}
+
+	input {
+		display: none;
+	}
+
+	input:checked + label svg {
+		fill: #ff7171;
+		stroke: #ff7171;
+		animation: heartButton 1s;
+	}
+
+	@keyframes heartButton {
+		0% {
+			transform: scale(1);
+		}
+
+		25% {
+			transform: scale(1.3);
+		}
+
+		50% {
+			transform: scale(1);
+		}
+
+		75% {
+			transform: scale(1.3);
+		}
+
+		100% {
+			transform: scale(1);
+		}
+	}
+}
