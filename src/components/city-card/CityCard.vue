@@ -103,14 +103,9 @@
 			</div>
 
 			<div class="save-checkbox">
-				<input
-					type="checkbox"
-					id="favorite"
-					name="favorite-checkbox"
-					value="favorite-button"
-				/>
+				<input type="checkbox" />
 
-				<label for="favorite" class="container">
+				<label class="container">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="24"
