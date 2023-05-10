@@ -13,10 +13,15 @@
 			class="dropdown"
 			@mouseenter="hoverDropdown = true"
 			@mouseleave="hoverDropdown = false"
-			v-show="showDropdown"
+			v-if="showDropdown"
 		>
 			<ul class="dropdown__list">
-				<li class="dropdown__list-item" v-for="(city, i) in filteredDropdown" :key="i">
+				<li
+					class="dropdown__list-item"
+					@click="selectCity(city)"
+					v-for="(city, i) in filteredDropdown"
+					:key="i"
+				>
 					<p>{{ city }}</p>
 
 					<span class="material-symbols-outlined"> location_on </span>
@@ -29,6 +34,12 @@
 <script setup>
 import { useLocations } from "@/store/LocationsStore.js";
 import { computed, ref, watch } from "vue";
+
+const emits = defineEmits({
+	select(city) {
+		return typeof city === "string";
+	},
+});
 
 // Store locations
 const store = useLocations();
@@ -60,6 +71,11 @@ watch(searchValue, () => {
 		warning.value = false;
 	}
 });
+
+function selectCity(city) {
+	showDropdown.value = false;
+	emits("select", city);
+}
 </script>
 
 <style scoped lang="scss">

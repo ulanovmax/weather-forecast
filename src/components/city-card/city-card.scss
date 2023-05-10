@@ -80,6 +80,7 @@
 
 	&__img {
 		width: 120px;
+		margin-right: 20px;
 
 		img {
 			width: 100%;
@@ -340,4 +341,18 @@
 			transform: scale(1);
 		}
 	}
+}
+
+// Transition
+.v-enter-active,
+.v-leave-active {
+	transition: 0.4s ease;
+	transform: translateY(0);
+	opacity: 1;
+}
+
+.v-enter-from,
+.v-leave-to {
+	opacity: 0;
+	transform: translateY(40px);
 }

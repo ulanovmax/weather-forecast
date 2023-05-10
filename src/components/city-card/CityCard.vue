@@ -9,26 +9,33 @@
 		<div class="city-card__wrapper">
 			<div class="city-card__info">
 				<div class="city-card__main">
-					<p class="city-card__date">Senin, 20 December 2021</p>
+					<p class="city-card__date">{{ formatDate() }}</p>
 
 					<div class="city-card__wrapper">
 						<div class="city-card__img">
-							<img src="@public/images/logo.svg" alt="" />
+							<img :src="weatherStates[weatherInfo[0].main]" alt="" />
 						</div>
 						<div class="city-card__heading">
-							<span class="city-card__heading-temp">18º C</span>
-							<h2 class="city-card__heading-name">Odesa</h2>
-							<p class="city-card__heading-desc">light rain</p>
+							<span class="city-card__heading-temp">{{
+								kelvToCels(mainInfo.temp)
+							}}</span>
+							<h2 class="city-card__heading-name">{{ city }}</h2>
+							<p class="city-card__heading-desc">
+								{{ weatherInfo[0].description }}
+							</p>
 						</div>
 					</div>
 				</div>
+
 				<div class="stats">
 					<div class="stats__item">
 						<div class="stats__item-icon">
 							<span class="material-symbols-outlined"> thermostat </span>
 						</div>
 						<div class="stats__heading">
-							<p class="stats__item-value">29º C</p>
+							<p class="stats__item-value">
+								{{ kelvToCels(mainInfo.feels_like) }}
+							</p>
 							<p class="stats__item-title">Feels like</p>
 						</div>
 					</div>
@@ -38,7 +45,7 @@
 							<span class="material-symbols-outlined"> humidity_mid </span>
 						</div>
 						<div class="stats__heading">
-							<p class="stats__item-value">80%</p>
+							<p class="stats__item-value">{{ mainInfo.humidity }} %</p>
 							<p class="stats__item-title">Humidity</p>
 						</div>
 					</div>
@@ -48,7 +55,7 @@
 							<span class="material-symbols-outlined"> compress </span>
 						</div>
 						<div class="stats__heading">
-							<p class="stats__item-value">1015</p>
+							<p class="stats__item-value">{{ mainInfo.pressure }}</p>
 							<p class="stats__item-title">Pressure</p>
 						</div>
 					</div>
@@ -58,7 +65,7 @@
 							<span class="material-symbols-outlined"> air </span>
 						</div>
 						<div class="stats__heading">
-							<p class="stats__item-value">2.66 km/h</p>
+							<p class="stats__item-value">{{ windInfo.speed }} m/s</p>
 							<p class="stats__item-title">wind</p>
 						</div>
 					</div>
@@ -66,13 +73,13 @@
 			</div>
 
 			<div class="weather-board">
-				<div class="board-box">
+				<div class="board-box flipped">
 					<div class="board-box__side board-box__side--back">
 						<div class="forecast-list">
 							<div class="forecast-list__item" v-for="i in 5" :key="i">
 								<img
 									class="forecast-list__item-img"
-									src="@public/images/states/partly-cloudy.svg"
+									src="@public/images/states/clear.svg"
 									alt=""
 								/>
 								<h3 class="forecast-list__item-temp">20º</h3>
@@ -128,7 +135,53 @@
 	</div>
 </template>
 
-<script setup></script>
+<script setup>
+defineProps({
+	weatherInfo: {
+		type: [Object, Array],
+		required: true,
+	},
+
+	mainInfo: {
+		type: [Object, Array],
+		required: true,
+	},
+
+	windInfo: {
+		type: [Object, Array],
+	},
+
+	city: {
+		type: String,
+		required: true,
+	},
+});
+
+const weatherStates = {
+	Thunderstorm: `${location.href}public/images/states/thunderstorm.svg`,
+	Clear: `${location.href}public/images/states/clear.svg`,
+	Rain: `${location.href}public/images/states/rain.svg`,
+	Clouds: `${location.href}public/images/states/clouds.svg`,
+};
+
+const kelvToCels = (kelv) => Math.round(kelv - 273.15) + "°";
+
+// Format Date
+function formatDate() {
+	const date = new Date();
+
+	// prettier-ignore
+	const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',];
+	const days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+
+	const dn = date.getDay();
+	const dm = date.getMonth();
+	const year = new Date().getFullYear();
+	const day = new Date().getDate();
+
+	return `${days[dn]}, ${day} ${monthNames[dm]} ${year}`;
+}
+</script>
 
 <style scoped lang="scss">
 @import "city-card";

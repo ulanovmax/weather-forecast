@@ -12,3 +12,17 @@ body {
 	margin: 0 auto;
 	padding: 0 2rem;
 }
+
+// Transition
+.v-enter-active,
+.v-leave-active {
+	transition: 0.4s ease;
+	//transform: translateY(0);
+	opacity: 1;
+}
+
+.v-enter-from,
+.v-leave-to {
+	opacity: 0;
+	//transform: translateY(40px);
+}

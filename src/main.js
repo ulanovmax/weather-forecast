@@ -12,5 +12,11 @@ const pinia = createPinia();
 
 // Components
 import VInput from "@/components/base/VInput.vue";
+import VLoader from "@/components/loader/VLoader.vue";
 
-createApp(App).use(router).use(pinia).component("VInput", VInput).mount("#app");
+createApp(App)
+	.use(router)
+	.use(pinia)
+	.component("VInput", VInput)
+	.component("VLoader", VLoader)
+	.mount("#app");
