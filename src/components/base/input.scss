@@ -41,4 +41,27 @@ textarea {
 		z-index: 10;
 		pointer-events: none;
 	}
+
+	&.error {
+		input {
+			border-color: var(--error);
+		}
+
+		.icon {
+			color: var(--error);
+		}
+
+		.error-message {
+			color: var(--error);
+			display: flex;
+			align-items: center;
+			position: absolute;
+			top: 106%;
+
+			p {
+				margin-left: 5px;
+				font-size: 14px;
+			}
+		}
+	}
 }

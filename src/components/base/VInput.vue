@@ -1,12 +1,21 @@
 <template>
-	<div class="input-item">
-		<span v-if="iconName" class="material-symbols-outlined icon">{{ iconName }}</span>
+	<div class="input-item" :class="{ error }">
+		<span v-if="iconName" ref="input" class="material-symbols-outlined icon">{{
+			iconName
+		}}</span>
 		<input
 			type="text"
 			:value="modelValue"
 			@input="$emit('update:modelValue', $event.target.value)"
+			@keydown="$emit('keydown', $event.target)"
+			@focusout="$emit('focusout', $event.target)"
 			:placeholder="placeholder"
 		/>
+
+		<div v-if="error" class="error-message">
+			<span class="material-symbols-outlined"> error </span>
+			<p>{{ errorMessage }}</p>
+		</div>
 	</div>
 </template>
 
@@ -28,6 +37,16 @@ defineProps({
 
 	iconName: {
 		type: String,
+	},
+
+	error: {
+		type: Boolean,
+		default: false,
+	},
+
+	errorMessage: {
+		type: [String, Number],
+		default: "Nothing found",
 	},
 });
 </script>

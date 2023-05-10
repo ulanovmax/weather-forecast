@@ -9,23 +9,7 @@
 				</p>
 			</div>
 
-			<div class="search-block">
-				<v-input
-					v-model="searchValue"
-					:icon-name="'search'"
-					placeholder="Search your city"
-				></v-input>
-
-				<div class="dropdown" v-show="false">
-					<ul class="dropdown__list">
-						<li class="dropdown__list-item" v-for="i in 5" :key="i">
-							<p>Odesa</p>
-
-							<span class="material-symbols-outlined"> location_on </span>
-						</li>
-					</ul>
-				</div>
-			</div>
+			<search-form></search-form>
 		</div>
 	</section>
 
@@ -38,9 +22,7 @@
 
 <script setup>
 import CityCard from "@/components/city-card/CityCard.vue";
-import { ref } from "vue";
-
-const searchValue = ref("");
+import SearchForm from "@/components/search-form/SearchForm.vue";
 </script>
 
 <style scoped lang="scss">
