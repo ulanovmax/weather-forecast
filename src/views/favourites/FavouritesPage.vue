@@ -10,14 +10,14 @@
 	<section class="favourites-section">
 		<div class="cont">
 			<div class="favourites-list">
-				<city-card v-for="i in 5" :key="i"></city-card>
+				<!--				<city-card v-for="i in 5" :key="i"></city-card>-->
 			</div>
 		</div>
 	</section>
 </template>
 
 <script setup>
-import CityCard from "@/components/city-card/CityCard.vue";
+// import CityCard from "@/components/city-card/CityCard.vue";
 </script>
 
 <style scoped lang="scss">

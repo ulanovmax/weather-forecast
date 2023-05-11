@@ -13,6 +13,37 @@ body {
 	padding: 0 2rem;
 }
 
+.btn {
+	display: block;
+	color: var(--white);
+	background: var(--blue);
+	font-size: 18px;
+	font-weight: 600;
+	padding: 10px 20px;
+	text-align: center;
+	border-radius: 15px;
+	border: 1px solid transparent;
+	transition: 0.3s ease;
+	width: fit-content;
+	cursor: pointer;
+
+	&:hover {
+		border-color: var(--blue);
+		color: var(--blue);
+		background: var(--white);
+	}
+
+	&.btn-red {
+		background: var(--red);
+
+		&:hover {
+			background: #ff0000;
+			border-color: var(--error);
+			color: var(--white);
+		}
+	}
+}
+
 // Transition
 .v-enter-active,
 .v-leave-active {

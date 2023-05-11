@@ -1,9 +1,23 @@
 <template>
 	<div class="city-card">
 		<div class="nav-buttons">
-			<button type="button" class="nav-buttons__item active">Today</button>
+			<button
+				type="button"
+				class="nav-buttons__item"
+				:class="{ active: !showForecast }"
+				@click="showForecast = false"
+			>
+				Today
+			</button>
 
-			<button type="button" class="nav-buttons__item">For 5 day</button>
+			<button
+				type="button"
+				class="nav-buttons__item"
+				:class="{ active: showForecast }"
+				@click="showForecast = true"
+			>
+				For 5 day
+			</button>
 		</div>
 
 		<div class="city-card__wrapper">
@@ -73,7 +87,7 @@
 			</div>
 
 			<div class="weather-board">
-				<div class="board-box flipped">
+				<div class="board-box" :class="{ flipped: showForecast }">
 					<div class="board-box__side board-box__side--back">
 						<div class="forecast-list">
 							<div class="forecast-list__item" v-for="i in 5" :key="i">
@@ -98,18 +112,18 @@
 		</div>
 
 		<div class="controls">
-			<div class="switch flex justify-center items-center mx-auto mb-24">
+			<div class="controls__item switch flex justify-center items-center mx-auto mb-24">
 				<label class="switch-button">
-					<input type="radio" name="content" checked />
+					<input type="radio" :name="'city-' + city" checked />
 					<span class="material-symbols-outlined"> sunny </span>
 				</label>
 				<label class="switch-button">
-					<input type="radio" name="content" />
+					<input type="radio" :name="'city-' + city" />
 					<span class="material-symbols-outlined"> dark_mode </span>
 				</label>
 			</div>
 
-			<div class="save-checkbox">
+			<div class="controls__item save-checkbox">
 				<input type="checkbox" />
 
 				<label class="container">
@@ -131,11 +145,18 @@
 					</svg>
 				</label>
 			</div>
+
+			<div class="controls__item controls-delete" @click="$emit('delete', true)">
+				<span class="material-symbols-outlined"> delete </span>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script setup>
+// Props
+import { ref } from "vue";
+
 defineProps({
 	weatherInfo: {
 		type: [Object, Array],
@@ -156,6 +177,9 @@ defineProps({
 		required: true,
 	},
 });
+
+// Controls
+const showForecast = ref(false);
 
 const weatherStates = {
 	Thunderstorm: `${location.href}public/images/states/thunderstorm.svg`,

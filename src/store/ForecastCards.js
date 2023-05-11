@@ -18,15 +18,13 @@ export const useForecastCards = defineStore("ForecastCards", {
 					`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=3e9e0c88e77a6c7b422e45d43c267061`
 				);
 
-				this.cards.push({
+				this.cards.unshift({
 					main: await forecast.data.main,
 					weather: await forecast.data.weather,
 					wind: await forecast.data.wind,
 					id: await forecast.data.id,
 					name: await forecast.data.name,
 				});
-
-				console.log(forecast.data);
 
 				this.loading = false;
 			} catch (err) {
