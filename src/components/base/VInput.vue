@@ -1,5 +1,5 @@
 <template>
-	<div class="input-item" :class="{ error }">
+	<div class="input-item" :class="{ error: notFound || notExist || duplicate }">
 		<span v-if="iconName" ref="input" class="material-symbols-outlined icon">{{
 			iconName
 		}}</span>
@@ -12,9 +12,19 @@
 			:placeholder="placeholder"
 		/>
 
-		<div v-if="error" class="error-message">
+		<div v-if="notFound" class="warning-mess">
 			<span class="material-symbols-outlined"> error </span>
-			<p>{{ errorMessage }}</p>
+			<p>City not found</p>
+		</div>
+
+		<div v-if="duplicate" class="warning-mess">
+			<span class="material-symbols-outlined"> error </span>
+			<p>City already exists</p>
+		</div>
+
+		<div v-if="notExist" class="warning-mess">
+			<span class="material-symbols-outlined"> error </span>
+			<p>Sorry, city doesn't exist</p>
 		</div>
 	</div>
 </template>
@@ -39,14 +49,19 @@ defineProps({
 		type: String,
 	},
 
-	error: {
+	notExist: {
 		type: Boolean,
 		default: false,
 	},
 
-	errorMessage: {
-		type: [String, Number],
-		default: "Nothing found",
+	duplicate: {
+		type: Boolean,
+		default: false,
+	},
+
+	notFound: {
+		type: Boolean,
+		default: false,
 	},
 });
 </script>

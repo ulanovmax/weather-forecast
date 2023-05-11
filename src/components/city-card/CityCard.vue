@@ -27,15 +27,15 @@
 
 					<div class="city-card__wrapper">
 						<div class="city-card__img">
-							<img :src="weatherStates[weatherInfo[0].main]" alt="" />
+							<img :src="weatherStates[cardInfo.weather[0].main]" alt="" />
 						</div>
 						<div class="city-card__heading">
 							<span class="city-card__heading-temp">{{
-								kelvToCels(mainInfo.temp)
+								kelvToCels(cardInfo.main.temp)
 							}}</span>
-							<h2 class="city-card__heading-name">{{ city }}</h2>
+							<h2 class="city-card__heading-name">{{ cardInfo.name }}</h2>
 							<p class="city-card__heading-desc">
-								{{ weatherInfo[0].description }}
+								{{ cardInfo.weather[0].description }}
 							</p>
 						</div>
 					</div>
@@ -48,7 +48,7 @@
 						</div>
 						<div class="stats__heading">
 							<p class="stats__item-value">
-								{{ kelvToCels(mainInfo.feels_like) }}
+								{{ kelvToCels(cardInfo.main.feels_like) }}
 							</p>
 							<p class="stats__item-title">Feels like</p>
 						</div>
@@ -59,7 +59,7 @@
 							<span class="material-symbols-outlined"> humidity_mid </span>
 						</div>
 						<div class="stats__heading">
-							<p class="stats__item-value">{{ mainInfo.humidity }} %</p>
+							<p class="stats__item-value">{{ cardInfo.main.humidity }} %</p>
 							<p class="stats__item-title">Humidity</p>
 						</div>
 					</div>
@@ -69,7 +69,7 @@
 							<span class="material-symbols-outlined"> compress </span>
 						</div>
 						<div class="stats__heading">
-							<p class="stats__item-value">{{ mainInfo.pressure }}</p>
+							<p class="stats__item-value">{{ cardInfo.main.pressure }}</p>
 							<p class="stats__item-title">Pressure</p>
 						</div>
 					</div>
@@ -79,7 +79,7 @@
 							<span class="material-symbols-outlined"> air </span>
 						</div>
 						<div class="stats__heading">
-							<p class="stats__item-value">{{ windInfo.speed }} m/s</p>
+							<p class="stats__item-value">{{ cardInfo.wind.speed }} m/s</p>
 							<p class="stats__item-title">wind</p>
 						</div>
 					</div>
@@ -92,7 +92,7 @@
 						<div class="forecast-list">
 							<div
 								class="forecast-list__item"
-								v-for="item in forecast"
+								v-for="item in cardInfo.forecast"
 								:key="item.dt"
 							>
 								<img
@@ -121,17 +121,17 @@
 		<div class="controls">
 			<div class="controls__item switch flex justify-center items-center mx-auto mb-24">
 				<label class="switch-button">
-					<input type="radio" :name="'city-' + city" checked />
+					<input type="radio" :name="'city-' + cardInfo.id" checked />
 					<span class="material-symbols-outlined"> sunny </span>
 				</label>
 				<label class="switch-button">
-					<input type="radio" :name="'city-' + city" />
+					<input type="radio" :name="'city-' + cardInfo.id" />
 					<span class="material-symbols-outlined"> dark_mode </span>
 				</label>
 			</div>
 
 			<div class="controls__item save-checkbox">
-				<input type="checkbox" />
+				<input type="checkbox" v-model="favouriteChecked" :checked="cardInfo.favourite" />
 
 				<label class="container">
 					<svg
@@ -153,7 +153,11 @@
 				</label>
 			</div>
 
-			<div class="controls__item controls-delete" @click="$emit('delete', true)">
+			<div
+				v-if="!hideDelete"
+				class="controls__item controls-delete"
+				@click="$emit('delete', true)"
+			>
 				<span class="material-symbols-outlined"> delete </span>
 			</div>
 		</div>
@@ -162,43 +166,39 @@
 
 <script setup>
 // Props
-import { ref } from "vue";
+import { ref, watch } from "vue";
+import { useFavourites } from "@/store/FavouritesStore.js";
 
-defineProps({
-	weatherInfo: {
-		type: [Object, Array],
+const props = defineProps({
+	cardInfo: {
+		type: Object,
 		required: true,
 	},
 
-	mainInfo: {
-		type: [Object, Array],
-		required: true,
-	},
-
-	windInfo: {
-		type: [Object, Array],
-	},
-
-	city: {
-		type: String,
-		required: true,
-	},
-
-	forecast: {
-		type: [Array, Object],
+	hideDelete: {
+		type: Boolean,
+		default: false,
 	},
 });
 
-// console.log(props.forecast);
+// const emits = defineEmits(["addToFavourite, removeFavourite"]);
+
+const favStore = useFavourites();
 
 // Controls
 const showForecast = ref(false);
+const favouriteChecked = ref();
+
+// Add to favourite
+watch(favouriteChecked, (val) => {
+	val ? favStore.addFavourite(props.cardInfo) : favStore.removeFavourite(props.cardInfo);
+});
 
 const weatherStates = {
-	Thunderstorm: `${location.href}public/images/states/thunderstorm.svg`,
-	Clear: `${location.href}public/images/states/clear.svg`,
-	Rain: `${location.href}public/images/states/rain.svg`,
-	Clouds: `${location.href}public/images/states/clouds.svg`,
+	Thunderstorm: `${location.origin}/public/images/states/thunderstorm.svg`,
+	Clear: `${location.origin}/public/images/states/clear.svg`,
+	Rain: `${location.origin}/public/images/states/rain.svg`,
+	Clouds: `${location.origin}/public/images/states/clouds.svg`,
 };
 
 const kelvToCels = (kelv) => Math.round(kelv - 273.15) + "°";

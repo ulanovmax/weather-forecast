@@ -9,15 +9,28 @@
 
 	<section class="favourites-section">
 		<div class="cont">
-			<div class="favourites-list">
-				<!--				<city-card v-for="i in 5" :key="i"></city-card>-->
+			<div class="favourites-list" v-if="favStore.favouritesList.length">
+				<city-card
+					v-for="card in favStore.favouritesList"
+					:key="card.id"
+					:card-info="card"
+					:hide-delete="true"
+					@add-to-favourite="favStore.addFavourite(card)"
+					@remove-favourite="favStore.removeFavourite(card)"
+				></city-card>
 			</div>
+
+			<h3 v-else>No favourites</h3>
 		</div>
 	</section>
 </template>
 
 <script setup>
-// import CityCard from "@/components/city-card/CityCard.vue";
+import CityCard from "@/components/city-card/CityCard.vue";
+import { useFavourites } from "@/store/FavouritesStore.js";
+
+// Favourites Store
+const favStore = useFavourites();
 </script>
 
 <style scoped lang="scss">

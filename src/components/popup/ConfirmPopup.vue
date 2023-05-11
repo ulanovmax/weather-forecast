@@ -6,7 +6,7 @@
 
 				<div class="buttons">
 					<button type="button" class="btn" @click="$emit('close', false)">Cancel</button>
-					<button type="button" class="btn btn-red">Yes</button>
+					<button type="button" class="btn btn-red" @click="$emit('delete')">Yes</button>
 				</div>
 			</div>
 		</div>

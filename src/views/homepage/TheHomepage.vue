@@ -13,50 +13,50 @@
 				<the-clouds></the-clouds>
 			</div>
 
-			<search-form @select="store.getWeather"></search-form>
+			<search-form></search-form>
 		</div>
 	</section>
 
 	<section class="weather-info">
 		<div class="cont">
-			<v-loader v-if="store.mainLoading"></v-loader>
+			<v-loader v-if="weatherStore.mainLoading"></v-loader>
 
 			<div class="cards-list" v-else>
 				<city-card
-					v-for="card in store.cardsList"
+					v-for="card in weatherStore.cardsList"
 					:key="card.id"
-					:weather-info="card.weather"
-					:main-info="card.main"
-					:wind-info="card.wind"
-					:city="card.name"
-					:forecast="card.forecast"
-					@delete="showConfirm"
+					:card-info="card"
 				></city-card>
 			</div>
 		</div>
 	</section>
 
-	<confirm-popup :is-open="confirmDelete" @close="confirmDelete = false"></confirm-popup>
+	<confirm-popup :is-open="showConfirm" @close="showConfirm = false"></confirm-popup>
 </template>
 
 <script setup>
 import CityCard from "@/components/city-card/CityCard.vue";
 import SearchForm from "@/components/search-form/SearchForm.vue";
 import ConfirmPopup from "@/components/popup/ConfirmPopup.vue";
+import TheClouds from "@/components/animation/TheClouds.vue";
+
+import { ref } from "vue";
 
 import { useForecastCards } from "@/store/WeatherCards.js";
-import { ref } from "vue";
-import TheClouds from "@/components/animation/TheClouds.vue";
-// import { storeToRefs } from "pinia";
+
+// Store weather
+const weatherStore = useForecastCards();
+// import { useFavourites } from "@/store/FavouritesStore.js";
 
 // const limit = 5;
 
-const store = useForecastCards();
-const confirmDelete = ref(false);
+// const favStore = useFavourites();
 
-function showConfirm(bool) {
-	confirmDelete.value = bool;
-}
+const showConfirm = ref(false);
+
+// function showConfirmMessage(card) {
+// 	showConfirm.value = true;
+// }
 
 // function test(v) {
 // 	console.log(v);

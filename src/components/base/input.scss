@@ -50,18 +50,18 @@ textarea {
 		.icon {
 			color: var(--error);
 		}
+	}
+}
 
-		.error-message {
-			color: var(--error);
-			display: flex;
-			align-items: center;
-			position: absolute;
-			top: 106%;
+.warning-mess {
+	color: var(--error);
+	display: flex;
+	align-items: center;
+	position: absolute;
+	top: 108%;
 
-			p {
-				margin-left: 5px;
-				font-size: 14px;
-			}
-		}
+	p {
+		margin-left: 5px;
+		font-size: 14px;
 	}
 }

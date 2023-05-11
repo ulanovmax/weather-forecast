@@ -6,7 +6,7 @@ import FavouritesPage from "@/views/favourites/FavouritesPage.vue";
 const routes = [
 	{ path: "/", name: "home", component: TheHomepage },
 	{
-		path: "/favourites",
+		path: "/favourites/",
 		name: "favourites",
 		component: FavouritesPage,
 	},

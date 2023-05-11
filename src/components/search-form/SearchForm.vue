@@ -2,10 +2,12 @@
 	<form class="search-block">
 		<v-input
 			v-model="searchValue"
-			:icon-name="'search'"
-			:error="warning"
 			placeholder="Search your city"
-			@keydown="showDropdown = true"
+			icon-name="search"
+			:not-found="notFound"
+			:duplicate="weatherStore.duplicate"
+			:not-exist="notExist"
+			@keydown="show"
 			@focusout="hoverDropdown ? (showDropdown = true) : (showDropdown = false)"
 		></v-input>
 
@@ -28,8 +30,6 @@
 				</li>
 			</ul>
 		</div>
-
-		<p v-if="weatherStore.error">Didn't find</p>
 	</form>
 </template>
 
@@ -37,12 +37,6 @@
 import { useLocations } from "@/store/LocationsStore.js";
 import { computed, ref, watch } from "vue";
 import { useForecastCards } from "@/store/WeatherCards.js";
-
-const emits = defineEmits({
-	select(city) {
-		return typeof city === "string";
-	},
-});
 
 // Store locations
 const store = useLocations();
@@ -58,7 +52,16 @@ let hoverDropdown = ref(false);
 
 // Search form
 const searchValue = ref("");
-const warning = ref(false);
+
+// Errors
+const notFound = ref(false);
+const notExist = ref(false);
+const isDuplicate = ref(false);
+
+function show() {
+	showDropdown.value = true;
+	notFound.value = notExist.value = isDuplicate.value = false;
+}
 
 const filteredDropdown = computed(() => {
 	return searchValue.value
@@ -72,15 +75,20 @@ const filteredDropdown = computed(() => {
 
 watch(searchValue, () => {
 	if (!filteredDropdown.value.length && searchValue.value) {
-		warning.value = true;
+		notFound.value = true;
 	} else {
-		warning.value = false;
+		notFound.value = false;
 	}
 });
 
 function selectCity(city) {
 	showDropdown.value = false;
-	emits("select", city);
+	searchValue.value = "";
+
+	weatherStore.getWeather(city).catch(() => (notExist.value = weatherStore.error));
+
+	console.log(weatherStore.errorState);
+	isDuplicate.value = weatherStore.duplicate;
 }
 </script>
 
