@@ -28,12 +28,15 @@
 				</li>
 			</ul>
 		</div>
+
+		<p v-if="weatherStore.error">Didn't find</p>
 	</form>
 </template>
 
 <script setup>
 import { useLocations } from "@/store/LocationsStore.js";
 import { computed, ref, watch } from "vue";
+import { useForecastCards } from "@/store/WeatherCards.js";
 
 const emits = defineEmits({
 	select(city) {
@@ -46,9 +49,12 @@ const store = useLocations();
 
 store.loadLocations();
 
+// Store weather
+const weatherStore = useForecastCards();
+
 // Toggle dropdown
-const showDropdown = ref(false);
-const hoverDropdown = ref(false);
+let showDropdown = ref(false);
+let hoverDropdown = ref(false);
 
 // Search form
 const searchValue = ref("");

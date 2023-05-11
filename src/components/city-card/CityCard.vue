@@ -90,14 +90,21 @@
 				<div class="board-box" :class="{ flipped: showForecast }">
 					<div class="board-box__side board-box__side--back">
 						<div class="forecast-list">
-							<div class="forecast-list__item" v-for="i in 5" :key="i">
+							<div
+								class="forecast-list__item"
+								v-for="item in forecast"
+								:key="item.dt"
+							>
 								<img
 									class="forecast-list__item-img"
-									src="@public/images/states/clear.svg"
-									alt=""
+									:src="weatherStates[item.weather[0].main]"
 								/>
-								<h3 class="forecast-list__item-temp">20º</h3>
-								<p class="forecast-list__item-day">Mon</p>
+								<h3 class="forecast-list__item-temp">
+									{{ kelvToCels(item.main.temp) }}
+								</h3>
+								<p class="forecast-list__item-day">
+									{{ dayOfTheWeek(item.dt_txt) }}
+								</p>
 							</div>
 						</div>
 					</div>
@@ -176,7 +183,13 @@ defineProps({
 		type: String,
 		required: true,
 	},
+
+	forecast: {
+		type: [Array, Object],
+	},
 });
+
+// console.log(props.forecast);
 
 // Controls
 const showForecast = ref(false);
@@ -190,13 +203,16 @@ const weatherStates = {
 
 const kelvToCels = (kelv) => Math.round(kelv - 273.15) + "°";
 
+const days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+
+const dayOfTheWeek = (date) => days[new Date(date).getDay()];
+
 // Format Date
 function formatDate() {
 	const date = new Date();
 
 	// prettier-ignore
 	const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',];
-	const days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
 
 	const dn = date.getDay();
 	const dm = date.getMonth();
