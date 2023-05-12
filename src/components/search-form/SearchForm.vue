@@ -5,7 +5,7 @@
 			placeholder="Search your city"
 			icon-name="search"
 			:not-found="notFound"
-			:duplicate="weatherStore.duplicate"
+			:duplicate="isDuplicate"
 			:not-exist="notExist"
 			@keydown="show"
 			@focusout="hoverDropdown ? (showDropdown = true) : (showDropdown = false)"
@@ -36,7 +36,7 @@
 <script setup>
 import { useLocations } from "@/store/LocationsStore.js";
 import { computed, ref, watch } from "vue";
-import { useForecastCards } from "@/store/WeatherCards.js";
+import { useWeatherCards } from "@/store/WeatherCards.js";
 
 // Store locations
 const store = useLocations();
@@ -44,7 +44,7 @@ const store = useLocations();
 store.loadLocations();
 
 // Store weather
-const weatherStore = useForecastCards();
+const weatherStore = useWeatherCards();
 
 // Toggle dropdown
 let showDropdown = ref(false);
@@ -60,7 +60,10 @@ const isDuplicate = ref(false);
 
 function show() {
 	showDropdown.value = true;
-	notFound.value = notExist.value = isDuplicate.value = false;
+
+	notFound.value = false;
+	notExist.value = false;
+	isDuplicate.value = false;
 }
 
 const filteredDropdown = computed(() => {
@@ -85,10 +88,14 @@ function selectCity(city) {
 	showDropdown.value = false;
 	searchValue.value = "";
 
-	weatherStore.getWeather(city).catch(() => (notExist.value = weatherStore.error));
-
-	console.log(weatherStore.errorState);
-	isDuplicate.value = weatherStore.duplicate;
+	if (weatherStore.cards.length !== weatherStore.limit) {
+		weatherStore
+			.getWeather(city)
+			.then(() => (isDuplicate.value = weatherStore.duplicate))
+			.catch(() => (notExist.value = weatherStore.error));
+	} else {
+		weatherStore.limitExceeded = true;
+	}
 }
 </script>
 

@@ -153,11 +153,7 @@
 				</label>
 			</div>
 
-			<div
-				v-if="!hideDelete"
-				class="controls__item controls-delete"
-				@click="$emit('delete', true)"
-			>
+			<div v-if="!hideDelete" class="controls__item controls-delete" @click="$emit('delete')">
 				<span class="material-symbols-outlined"> delete </span>
 			</div>
 		</div>

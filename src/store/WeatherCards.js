@@ -1,15 +1,16 @@
 import { defineStore } from "pinia";
 import axios from "axios";
-// import { getForecast } from "@/api/forecast.service.js";
 import { useForecast } from "@/store/ForecastList.js";
 
-export const useForecastCards = defineStore("ForecastCards", {
+export const useWeatherCards = defineStore("ForecastCards", {
 	state: () => {
 		return {
 			cards: [],
 			mainLoading: false,
 			error: false,
 			duplicate: false,
+			limit: 5,
+			limitExceeded: false,
 		};
 	},
 
@@ -49,6 +50,8 @@ export const useForecastCards = defineStore("ForecastCards", {
 					});
 				}
 
+				console.log(this.cards);
+
 				this.mainLoading = false;
 			} catch (err) {
 				this.error = true;
@@ -57,17 +60,8 @@ export const useForecastCards = defineStore("ForecastCards", {
 			}
 		},
 
-		// duplicated() {
-		// 	this.duplicate = true;
-		// },
-	},
-
-	getters: {
-		cardsList(state) {
-			return state.cards.length ? state.cards.slice(0, 5) : [];
-		},
-		errorState(state) {
-			return state.error;
+		removeCard(card) {
+			this.cards = this.cards.filter((curr) => curr.id !== card.id);
 		},
 	},
 });
