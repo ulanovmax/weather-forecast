@@ -13,8 +13,8 @@
 				<city-card
 					v-for="card in favStore.favouritesList"
 					:key="card.id"
-					:card-info="card"
 					:hide-delete="true"
+					:card-info="card"
 					@add-to-favourite="favStore.addFavourite(card)"
 					@remove-favourite="favStore.removeFavourite(card)"
 				></city-card>

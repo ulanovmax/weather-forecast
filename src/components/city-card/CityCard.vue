@@ -123,17 +123,6 @@
 		</div>
 
 		<div class="controls">
-			<div class="controls__item switch flex justify-center items-center mx-auto mb-24">
-				<label class="switch-button">
-					<input type="radio" :name="'city-' + cardInfo.id" checked />
-					<span class="material-symbols-outlined"> sunny </span>
-				</label>
-				<label class="switch-button">
-					<input type="radio" :name="'city-' + cardInfo.id" />
-					<span class="material-symbols-outlined"> dark_mode </span>
-				</label>
-			</div>
-
 			<div class="controls__item save-checkbox">
 				<input type="checkbox" v-model="favouriteChecked" :checked="cardInfo.favourite" />
 
