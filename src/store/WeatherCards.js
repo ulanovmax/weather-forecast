@@ -2,10 +2,16 @@ import { defineStore } from "pinia";
 import axios from "axios";
 import { useForecast } from "@/store/ForecastList.js";
 
-export const useWeatherCards = defineStore("ForecastCards", {
+export const useWeatherCards = defineStore("WeatherCards", {
 	state: () => {
+		let cards = [];
+
+		if (localStorage.getItem("cards")) {
+			cards = JSON.parse(localStorage.getItem("cards"));
+		}
+
 		return {
-			cards: [],
+			cards,
 			mainLoading: false,
 			error: false,
 			duplicate: false,
@@ -38,8 +44,6 @@ export const useWeatherCards = defineStore("ForecastCards", {
 					const store = useForecast();
 					await store.getForecast(city);
 					const forecast = store.forecastList;
-
-					console.log(forecast);
 
 					this.cards.unshift({
 						main: await weather.data.main,

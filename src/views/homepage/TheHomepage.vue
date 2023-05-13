@@ -71,7 +71,6 @@ const notFoundIp = ref(false);
 
 // Store weather
 const weatherStore = useWeatherCards();
-// import { useFavourites } from "@/store/FavouritesStore.js";
 
 onMounted(() => {
 	if (!weatherStore.cards.length) {
@@ -80,8 +79,6 @@ onMounted(() => {
 			.catch(() => (notFoundIp.value = true));
 	}
 });
-
-// const limit = 5;
 
 const showConfirm = ref(false);
 const confirmed = ref(false);
@@ -100,14 +97,6 @@ watch(confirmed, (bool) => {
 		confirmed.value = false;
 	}
 });
-
-// function showConfirmMessage(card) {
-// 	showConfirm.value = true;
-// }
-
-// function test(v) {
-// 	console.log(v);
-// }
 </script>
 
 <style scoped lang="scss">
