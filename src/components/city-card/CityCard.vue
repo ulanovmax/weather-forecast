@@ -23,17 +23,17 @@
 		<div class="city-card__wrapper">
 			<div class="city-card__info">
 				<div class="city-card__main">
-					<p class="city-card__date">{{ formatDate() }}</p>
-
 					<div class="city-card__wrapper">
 						<div class="city-card__img">
 							<img :src="weatherStates[cardInfo.weather[0].main]" alt="" />
 						</div>
 						<div class="city-card__heading">
-							<span class="city-card__heading-temp">{{
-								kelvToCels(cardInfo.main.temp)
-							}}</span>
+							<span class="city-card__heading-temp"
+								>{{ kelvToCels(cardInfo.main.temp) }}°
+							</span>
+
 							<h2 class="city-card__heading-name">{{ cardInfo.name }}</h2>
+
 							<p class="city-card__heading-desc">
 								{{ cardInfo.weather[0].description }}
 							</p>
@@ -41,46 +41,50 @@
 					</div>
 				</div>
 
-				<div class="stats">
-					<div class="stats__item">
-						<div class="stats__item-icon">
-							<span class="material-symbols-outlined"> thermostat </span>
-						</div>
-						<div class="stats__heading">
-							<p class="stats__item-value">
-								{{ kelvToCels(cardInfo.main.feels_like) }}
-							</p>
-							<p class="stats__item-title">Feels like</p>
-						</div>
-					</div>
+				<div class="stats-block">
+					<p class="city-card__date">{{ formatDate() }}</p>
 
-					<div class="stats__item">
-						<div class="stats__item-icon">
-							<span class="material-symbols-outlined"> humidity_mid </span>
+					<div class="stats">
+						<div class="stats__item">
+							<div class="stats__item-icon">
+								<span class="material-symbols-outlined"> thermostat </span>
+							</div>
+							<div class="stats__heading">
+								<p class="stats__item-value">
+									{{ kelvToCels(cardInfo.main.feels_like) }}°
+								</p>
+								<p class="stats__item-title">Feels like</p>
+							</div>
 						</div>
-						<div class="stats__heading">
-							<p class="stats__item-value">{{ cardInfo.main.humidity }} %</p>
-							<p class="stats__item-title">Humidity</p>
-						</div>
-					</div>
 
-					<div class="stats__item">
-						<div class="stats__item-icon">
-							<span class="material-symbols-outlined"> compress </span>
+						<div class="stats__item">
+							<div class="stats__item-icon">
+								<span class="material-symbols-outlined"> humidity_mid </span>
+							</div>
+							<div class="stats__heading">
+								<p class="stats__item-value">{{ cardInfo.main.humidity }} %</p>
+								<p class="stats__item-title">Humidity</p>
+							</div>
 						</div>
-						<div class="stats__heading">
-							<p class="stats__item-value">{{ cardInfo.main.pressure }}</p>
-							<p class="stats__item-title">Pressure</p>
-						</div>
-					</div>
 
-					<div class="stats__item">
-						<div class="stats__item-icon">
-							<span class="material-symbols-outlined"> air </span>
+						<div class="stats__item">
+							<div class="stats__item-icon">
+								<span class="material-symbols-outlined"> compress </span>
+							</div>
+							<div class="stats__heading">
+								<p class="stats__item-value">{{ cardInfo.main.pressure }}</p>
+								<p class="stats__item-title">Pressure</p>
+							</div>
 						</div>
-						<div class="stats__heading">
-							<p class="stats__item-value">{{ cardInfo.wind.speed }} m/s</p>
-							<p class="stats__item-title">wind</p>
+
+						<div class="stats__item">
+							<div class="stats__item-icon">
+								<span class="material-symbols-outlined"> air </span>
+							</div>
+							<div class="stats__heading">
+								<p class="stats__item-value">{{ cardInfo.wind.speed }} m/s</p>
+								<p class="stats__item-title">wind</p>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -90,6 +94,7 @@
 				<div class="board-box" :class="{ flipped: showForecast }">
 					<div class="board-box__side board-box__side--back">
 						<v-loader v-if="forecastStore.loading"></v-loader>
+
 						<div v-else class="forecast-list">
 							<div
 								class="forecast-list__item"
@@ -101,7 +106,7 @@
 									:src="weatherStates[item.state]"
 								/>
 								<h3 class="forecast-list__item-temp">
-									{{ kelvToCels(item.average) }}
+									{{ kelvToCels(item.average) }}°
 								</h3>
 								<p class="forecast-list__item-day">
 									{{ dayOfTheWeek(item.dt) }}
@@ -111,7 +116,7 @@
 					</div>
 
 					<div class="board-box__side board-box__side--front">
-						<weather-chart></weather-chart>
+						<weather-chart :days="chartDays" :values="chartTemp"></weather-chart>
 					</div>
 				</div>
 			</div>
@@ -161,11 +166,17 @@
 
 <script setup>
 import { ref, watch } from "vue";
-import { useFavourites } from "@/store/FavouritesStore.js";
 
+// Components
 import WeatherChart from "@/components/chart/WeatherChart.vue";
-import { useForecast } from "@/store/ForecastList.js";
 import VLoader from "@/components/loader/VLoader.vue";
+
+// Stores
+import { useFavourites } from "@/store/FavouritesStore.js";
+import { useForecast } from "@/store/ForecastList.js";
+
+const favStore = useFavourites();
+const forecastStore = useForecast();
 
 // Props
 const props = defineProps({
@@ -180,18 +191,8 @@ const props = defineProps({
 	},
 });
 
-const favStore = useFavourites();
-
-const forecastStore = useForecast();
-
-// Controls
-const showForecast = ref(false);
-const favouriteChecked = ref();
-
-// Add to favourite
-watch(favouriteChecked, (val) => {
-	val ? favStore.addFavourite(props.cardInfo) : favStore.removeFavourite(props.cardInfo);
-});
+// Format functions
+const days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
 
 const weatherStates = {
 	Thunderstorm: `${location.origin}/public/images/states/thunderstorm.svg`,
@@ -200,13 +201,10 @@ const weatherStates = {
 	Clouds: `${location.origin}/public/images/states/clouds.svg`,
 };
 
-const kelvToCels = (kelv) => Math.round(kelv - 273.15) + "°";
-
-const days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+const kelvToCels = (kelv) => Math.round(kelv - 273.15);
 
 const dayOfTheWeek = (date) => days[new Date(date).getDay()];
 
-// Format Date
 function formatDate() {
 	const date = new Date();
 
@@ -220,8 +218,22 @@ function formatDate() {
 
 	return `${days[dn]}, ${day} ${monthNames[dm]} ${year}`;
 }
+
+// Options for chart
+const chartDays = props.cardInfo.forecast.map((day) => dayOfTheWeek(day.dt));
+const chartTemp = props.cardInfo.forecast.map((day) => kelvToCels(day.average));
+
+// Controls
+const showForecast = ref(false);
+const favouriteChecked = ref();
+
+// Add to favourite
+watch(favouriteChecked, (val) => {
+	val ? favStore.addFavourite(props.cardInfo) : favStore.removeFavourite(props.cardInfo);
+});
 </script>
 
 <style scoped lang="scss">
+@import "@/assets/styles/_mixins.scss";
 @import "city-card";
 </style>

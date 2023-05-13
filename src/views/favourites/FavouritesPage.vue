@@ -39,6 +39,20 @@ const favStore = useFavourites();
 
 	h2 {
 		margin-bottom: 40px;
+
+		@media screen and (max-width: 415px) {
+			text-align: center;
+		}
+	}
+}
+
+.favourites-section {
+	padding-bottom: 80px;
+
+	h3 {
+		@media screen and (max-width: 415px) {
+			text-align: center;
+		}
 	}
 }
 </style>

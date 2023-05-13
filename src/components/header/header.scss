@@ -18,6 +18,14 @@
 	&-wrap {
 		display: flex;
 		align-items: center;
+
+		@media screen and (max-width: 415px) {
+			flex-direction: column;
+
+			.logo {
+				margin-bottom: 20px;
+			}
+		}
 	}
 
 	.menu-navbar {
