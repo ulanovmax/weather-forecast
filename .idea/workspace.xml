@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1a56e5b9-7852-4c01-ad5e-9cd96a506683" name="Changes" comment="build project" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Vue Composition API Component" />
+        <option value="JavaScript File" />
+        <option value="Vue Single File Component" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="build" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
+  <component name="ProjectId" id="2PZRFJXnfGSin0CtGuMIp82balx" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;18.15.0&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;18.15.0&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Projects/jenkins-associates&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\WEB\\Vue projects\\weather-app\\node_modules\\prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;vue.recent.templates&quot;: [
+      &quot;Vue Composition API Component&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\WEB\Vue projects\weather-app\public\images\states" />
+      <recent name="C:\WEB\Vue projects\weather-app\src\assets" />
+      <recent name="C:\WEB\Vue projects\weather-app" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\WEB\Vue projects\weather-app" />
+      <recent name="C:\WEB\Vue projects\weather-app\src\views\homepage" />
+      <recent name="C:\WEB\Vue projects\weather-app\public\images" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.build">
+    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.build" />
+        <item itemvalue="npm.dev" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1a56e5b9-7852-4c01-ad5e-9cd96a506683" name="Changes" comment="" />
+      <created>1683662511698</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1683662511698</updated>
+      <workItem from="1683662512742" duration="11177000" />
+      <workItem from="1683702870093" duration="448000" />
+      <workItem from="1683703896145" duration="1782000" />
+      <workItem from="1683730684810" duration="25392000" />
+      <workItem from="1683813869158" duration="9103000" />
+      <workItem from="1683834852595" duration="12015000" />
+      <workItem from="1683847160371" duration="279000" />
+      <workItem from="1683919325998" duration="19843000" />
+      <workItem from="1683968590506" duration="6386000" />
+      <workItem from="1683975083433" duration="1057000" />
+      <workItem from="1683976170584" duration="49000" />
+    </task>
+    <task id="LOCAL-00001" summary="Add header, routes and start homepage">
+      <created>1683674325256</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1683674325256</updated>
+    </task>
+    <task id="LOCAL-00002" summary="add layout of homepage">
+      <created>1683736157401</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1683736157401</updated>
+    </task>
+    <task id="LOCAL-00003" summary="add layout of favourites page">
+      <created>1683736755738</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1683736755738</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add cities store and filter in search form">
+      <created>1683749705098</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1683749705098</updated>
+    </task>
+    <task id="LOCAL-00005" summary="add weather store and add  select event in dropdown">
+      <created>1683758485031</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1683758485031</updated>
+    </task>
+    <task id="LOCAL-00006" summary="add confirmation popup">
+      <created>1683818378174</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1683818378174</updated>
+    </task>
+    <task id="LOCAL-00007" summary="add forecast store and change loader">
+      <created>1683835685175</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1683835685175</updated>
+    </task>
+    <task id="LOCAL-00008" summary="add favourites store and validate form">
+      <created>1683845980132</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1683845980132</updated>
+    </task>
+    <task id="LOCAL-00009" summary="add ip service, change popup, add limit of cards">
+      <created>1683928811311</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1683928811311</updated>
+    </task>
+    <task id="LOCAL-00010" summary="add average forecast list">
+      <created>1683936108345</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1683936108345</updated>
+    </task>
+    <task id="LOCAL-00011" summary="add mobile version">
+      <created>1683969076275</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1683969076275</updated>
+    </task>
+    <task id="LOCAL-00012" summary="adding data to localStorage">
+      <created>1683973616474</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1683973616474</updated>
+    </task>
+    <task id="LOCAL-00013" summary="archive night switch">
+      <created>1683974540739</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1683974540739</updated>
+    </task>
+    <task id="LOCAL-00014" summary="init build project">
+      <created>1683974956514</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1683974956514</updated>
+    </task>
+    <task id="LOCAL-00015" summary="init build project">
+      <created>1683975155206</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1683975155206</updated>
+    </task>
+    <task id="LOCAL-00016" summary="build project">
+      <created>1683975730884</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1683975730884</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Add header, routes and start homepage" />
+    <MESSAGE value="add layout" />
+    <MESSAGE value="add layout of homepage" />
+    <MESSAGE value="add layout of favourites page" />
+    <MESSAGE value="add cities store and filter in search form" />
+    <MESSAGE value="add weather store and add  select event in dropdown" />
+    <MESSAGE value="add confirmation popup" />
+    <MESSAGE value="add forecast store and change loader" />
+    <MESSAGE value="add favourites store and validate form" />
+    <MESSAGE value="add ip service, change popup, add limit of cards" />
+    <MESSAGE value="add average forecast list" />
+    <MESSAGE value="add mobile version" />
+    <MESSAGE value="adding data to localStorage" />
+    <MESSAGE value="archive night switch" />
+    <MESSAGE value="init build project" />
+    <MESSAGE value="build project" />
+    <option name="LAST_COMMIT_MESSAGE" value="build project" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
