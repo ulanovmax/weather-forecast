@@ -37,7 +37,9 @@ export const useWeatherCards = defineStore("ForecastCards", {
 				if (!this.duplicate) {
 					const store = useForecast();
 					await store.getForecast(city);
-					const forecast = store.formattedForecast;
+					const forecast = store.forecastList;
+
+					console.log(forecast);
 
 					this.cards.unshift({
 						main: await weather.data.main,
@@ -45,12 +47,10 @@ export const useWeatherCards = defineStore("ForecastCards", {
 						wind: await weather.data.wind,
 						id: await weather.data.id,
 						name: await weather.data.name,
-						forecast: forecast,
+						forecast,
 						favourite: false,
 					});
 				}
-
-				console.log(this.cards);
 
 				this.mainLoading = false;
 			} catch (err) {

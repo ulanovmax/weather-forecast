@@ -89,7 +89,8 @@
 			<div class="weather-board">
 				<div class="board-box" :class="{ flipped: showForecast }">
 					<div class="board-box__side board-box__side--back">
-						<div class="forecast-list">
+						<v-loader v-if="forecastStore.loading"></v-loader>
+						<div v-else class="forecast-list">
 							<div
 								class="forecast-list__item"
 								v-for="item in cardInfo.forecast"
@@ -97,22 +98,20 @@
 							>
 								<img
 									class="forecast-list__item-img"
-									:src="weatherStates[item.weather[0].main]"
+									:src="weatherStates[item.state]"
 								/>
 								<h3 class="forecast-list__item-temp">
-									{{ kelvToCels(item.main.temp) }}
+									{{ kelvToCels(item.average) }}
 								</h3>
 								<p class="forecast-list__item-day">
-									{{ dayOfTheWeek(item.dt_txt) }}
+									{{ dayOfTheWeek(item.dt) }}
 								</p>
 							</div>
 						</div>
 					</div>
 
 					<div class="board-box__side board-box__side--front">
-						<div class="city-card__graph-content">
-							<img src="@public/images/Graph.svg" alt="" />
-						</div>
+						<weather-chart></weather-chart>
 					</div>
 				</div>
 			</div>
@@ -161,10 +160,14 @@
 </template>
 
 <script setup>
-// Props
 import { ref, watch } from "vue";
 import { useFavourites } from "@/store/FavouritesStore.js";
 
+import WeatherChart from "@/components/chart/WeatherChart.vue";
+import { useForecast } from "@/store/ForecastList.js";
+import VLoader from "@/components/loader/VLoader.vue";
+
+// Props
 const props = defineProps({
 	cardInfo: {
 		type: Object,
@@ -177,9 +180,9 @@ const props = defineProps({
 	},
 });
 
-// const emits = defineEmits(["addToFavourite, removeFavourite"]);
-
 const favStore = useFavourites();
+
+const forecastStore = useForecast();
 
 // Controls
 const showForecast = ref(false);

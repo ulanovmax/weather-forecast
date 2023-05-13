@@ -14,6 +14,10 @@ const pinia = createPinia();
 import VInput from "@/components/base/VInput.vue";
 import VLoader from "@/components/loader/VLoader.vue";
 
+// import FusionCharts from "fusioncharts";
+
+// register VueFusionCharts component
+
 createApp(App)
 	.use(router)
 	.use(pinia)
